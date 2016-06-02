@@ -43,11 +43,6 @@ class Module extends \yii\base\Module
      */
     public $storageMap = [];
     
-    
-    
-    
-    public $options = [];
-    
     /**
      * @var array GrantTypes collection
      */
