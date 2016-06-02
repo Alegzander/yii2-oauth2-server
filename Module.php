@@ -31,7 +31,7 @@ use  \array_key_exists;
  */
 class Module extends \yii\base\Module
 {
-    const VERSION = '2.0.0';
+    const VERSION = '2.2.0';
     
     /**
      * @var array Model's map
