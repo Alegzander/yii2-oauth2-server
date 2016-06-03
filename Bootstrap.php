@@ -45,7 +45,7 @@ class Bootstrap implements \yii\base\BootstrapInterface
     public function bootstrap($app)
     {
         /** @var $module Module */ 
-        if ($app->hasModule('oauth2') && $module = $app->getModule('oauth2') instanceof Module) {
+        if ($app->hasModule('oauth2') && ($module = $app->getModule('oauth2')) instanceof Module) {
             $this->_modelMap = array_merge($this->_modelMap, $module->modelMap);
             foreach ($this->_modelMap as $name => $definition) {
                 \Yii::$container->set("filsh\\yii2\\oauth2server\\models\\" . $name, $definition);
