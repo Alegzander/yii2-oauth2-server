@@ -44,10 +44,8 @@ class Bootstrap implements \yii\base\BootstrapInterface
      */
     public function bootstrap($app)
     {
-        /** @var $module Module */
-        $module = $this->getModuleNested('oauth2', $app);
-
-        if ($module instanceof Module) {
+        /** @var $module Module */ 
+        if ($app->hasModule('oauth2') && $module = $app->getModule('oauth2') instanceof Module) {
             $this->_modelMap = array_merge($this->_modelMap, $module->modelMap);
             foreach ($this->_modelMap as $name => $definition) {
                 \Yii::$container->set("filsh\\yii2\\oauth2server\\models\\" . $name, $definition);
@@ -65,23 +63,4 @@ class Bootstrap implements \yii\base\BootstrapInterface
             }
         }
     }
-
-    public function getModuleNested($needle, $app)
-    {
-        /** @var $module Module */
-        if (($module = $app->getModule($needle)) !== null)
-            return $module;
-
-        foreach ($app->getModules() as $id => $module) {
-            $server = $app->getModule($id)->getModule($needle);
-            if ($server != null) {
-                return $server;
-            } else {
-                $this->getModuleNested($module->getModules());
-            }
-        }
-
-        return false;
-    }
-
 }
